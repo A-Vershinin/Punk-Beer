@@ -7,7 +7,7 @@ import React from 'react';
 
 	render() {
 		return (
-			<h1>COMPONENT A - Folkbit</h1>
+			<h1>COMPONENT A - List</h1>
 		);
 	}
 }
