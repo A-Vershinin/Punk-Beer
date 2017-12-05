@@ -1,19 +1,34 @@
 import React from "react";
-import ComponentA from "./components/ComponentA/ComponentA";
-import ComponentB from "./components/ComponentB/ComponentB";
+import List from "./components/List/List";
+
+
+import items from "./api/api.js";
+
+// console.log(items);
+
+const propsValues = {
+  items: [
+    {title: "Пиво1", source: "image.jpg", desc: "Какое-то описание"},
+    {title: "Пиво2", source: "image.jpg", desc: "Какое-то описание"},
+    {title: "Пиво3", source: "image.jpg", desc: "Какое-то описание"},
+    {title: "Пиво4", source: "image.jpg", desc: "Какое-то описание"},
+    {title: "Пиво5", source: "image.jpg", desc: "Какое-то описание"},
+    {title: "Пиво6", source: "image.jpg", desc: "Какое-то описание"},
+    {title: "Пиво7", source: "image.jpg", desc: "Какое-то описание"}
+  ],
+  // items: {items}
+};
 
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {propsValues};
   }
 
   render () {
     return (
       <div>
-        Hello world!
-        <ComponentA />
-        <ComponentB />
+        <List data={propsValues}/>
       </div>
     );
   }
