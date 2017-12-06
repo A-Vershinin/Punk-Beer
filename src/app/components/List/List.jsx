@@ -1,6 +1,5 @@
 import React from 'react';
 import "./List.scss";
-
 import Item from "../Item/Item";
 
 
