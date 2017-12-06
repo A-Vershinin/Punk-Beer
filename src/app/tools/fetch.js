@@ -1,7 +1,5 @@
 // Ajax API
 
-
-
 function fetch(url) {
   let promise = new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();

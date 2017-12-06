@@ -8,7 +8,6 @@ class List extends React.Component {
 		super(props);
 	}
 
-
 	render() {
 		return (
       <ul className="list">
