@@ -6,26 +6,3 @@
   flex-flow: row wrap;
   justify-content: flex-start;
 }
-
-.list__item {
-  width: 250px;
-  margin-right: 30px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-flow: row nowrap;
-  border: 1px solid #00b3ee;
-}
-.list__left {
-  width: 40%;
-}
-.list__right {
-  width: 60%;
-}
-
-
-.list__image {
-  min-height: 200px;
-  background-color: #56ee5f;
-}
-.list__title {}
-.list__desc {}
