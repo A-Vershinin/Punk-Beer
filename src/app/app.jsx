@@ -2,6 +2,8 @@ import React from "react";
 import List from "./components/List/List";
 import Header from "./components/Header/Header";
 import BeerAPI from "./api/beer";
+import SearchBar from "./components/SearchBar/SearchBar";
+
 
 const someArr = [
     {id: 1, image_url: "https://images.punkapi.com/v2/191.png", name: "Beer Name", first_brewed: "04/2007", description: "New Zealand hops", boil_volume: {"value": 250}},
@@ -17,11 +19,11 @@ class App extends React.Component {
     this.state = {items: []};
   }
 
-  // componentDidMount() {
-  //   BeerAPI.getAllItems()
-  //     .then(response => this.setState({items: response}))
-  //     .catch(error => this.handleError(error));
-  // }
+  componentDidMount() {
+    BeerAPI.getAllItems()
+      .then(response => this.setState({items: response}))
+      .catch(error => this.handleError(error));
+  }
 
   handleError(error) {
     console.log(error);
@@ -32,8 +34,13 @@ class App extends React.Component {
     const load = <div>Loading</div>;
     return (
       <div>
-        <Header title={this.props.title}/>
-        <List data={someArr}/>
+          <Header title={this.props.title}/>
+          <section className="section">
+            <div className="container">
+              <SearchBar />
+              <List data={this.state.items}/>
+            </div>
+          </section>
       </div>
     );
   }

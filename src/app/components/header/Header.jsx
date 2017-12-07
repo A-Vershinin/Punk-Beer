@@ -1,6 +1,8 @@
 import React from 'react';
-import Nav from "../Nav/Nav";
+import Nav from "../Navigation/Navigation";
 import "./Header.scss";
+import { Level } from 'reactbulma';
+
 
 
 class Header extends React.Component {
@@ -11,8 +13,14 @@ class Header extends React.Component {
   render () {
     return (
       <header className="header">
-        <h1 className="header__logo">{this.props.title}</h1>
-        <Nav />
+        <div className="container level">
+          <Level.Left>
+            <h1 className="title is-1 header__title">{this.props.title}</h1>
+          </Level.Left>
+          <Level.Right>
+            <Nav />
+          </Level.Right>
+        </div>
       </header>
     )
   }
@@ -23,3 +31,5 @@ class Header extends React.Component {
 // };
 
 export default Header;
+
+

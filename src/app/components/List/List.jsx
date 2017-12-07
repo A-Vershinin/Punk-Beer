@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { PropTypes }  from 'react';
 import "./List.scss";
 import Item from "../Item/Item";
 
 
 class List extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+  constructor (props) {
+    super(props);
+  }
 
-	render() {
-		return (
+  render () {
+    return (
       <ul className="list">
         {
           this.props.data.map(elem => {
@@ -17,12 +17,12 @@ class List extends React.Component {
               <Item key={elem.id} src={elem.image_url} name={elem.name} time={elem.first_brewed}
                     desc={elem.description} volume={elem.boil_volume.value}
               />
-            )
+            );
           })
         }
-      </ul>
-		);
-	}
+        </ul>
+    );
+  }
 }
 
 // List.PropTypes = {

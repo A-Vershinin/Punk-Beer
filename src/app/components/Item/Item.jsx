@@ -1,5 +1,8 @@
 import React from 'react';
 import "./Item.scss";
+import { Box } from 'reactbulma';
+import { CardContent } from 'reactbulma';
+
 
 
 function Item(props) {
@@ -21,13 +24,13 @@ function Item(props) {
   )
 }
 
-Item.propTypes = {
+// Item.propTypes = {
   // src: React.PropTypes.string.isRequired
   // name: React.PropTypes.string.isRequired,
   // time: React.PropTypes.number.isRequired,
   // desc: React.PropTypes.string.isRequired
   // volume: React.PropTypes.number.isRequired
-};
+// };
 
 
 export default Item;
