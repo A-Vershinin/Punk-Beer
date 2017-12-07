@@ -22,7 +22,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(css|scss)?$/,
-				exclude: /(node_modules|bower_components)/,
+				// exclude: /(node_modules|bower_components)/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: ['css-loader', 'sass-loader']
