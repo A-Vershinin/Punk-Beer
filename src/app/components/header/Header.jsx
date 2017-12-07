@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Nav from "../Navigation/Navigation";
 import "./Header.scss";
 import { Level } from 'reactbulma';
@@ -26,9 +27,9 @@ class Header extends React.Component {
   }
 }
 
-// Header.PropTypes = {
-//   title: React.PropTypes.string
-// };
+Header.propTypes = {
+  title: PropTypes.string
+};
 
 export default Header;
 

@@ -1,4 +1,5 @@
-import React, { PropTypes }  from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import "./List.scss";
 import Item from "../Item/Item";
 
@@ -15,23 +16,23 @@ class List extends React.Component {
           this.props.data.map(elem => {
             return (
               <Item key={elem.id} src={elem.image_url} name={elem.name} time={elem.first_brewed}
-                    desc={elem.description} volume={elem.boil_volume.value}
+                    desc={elem.description} rating={elem.attenuation_level}
               />
             );
           })
         }
-        </ul>
+      </ul>
     );
   }
 }
 
-// List.PropTypes = {
-//   data: React.PropTypes.arrayOf(React.PropTypes.shape({
-//     src: React.PropTypes.string.isRequired,
-//     name: React.PropTypes.string.isRequired,
-//     desc: React.PropTypes.string.isRequired,
-//   })).isRequired,
-// };
 
+List.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired
+  })).isRequired
+};
 
 export default List;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import List from "./components/List/List";
 import Header from "./components/Header/Header";
 import BeerAPI from "./api/beer";
@@ -17,11 +18,21 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {items: []};
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidMount() {
     BeerAPI.getAllItems()
       .then(response => this.setState({items: response}))
+      .catch(error => this.handleError(error));
+  }
+
+  handleAdd(title) {
+    BeerAPI.getAllByName(title)
+      .then(response => {
+        console.log(response);
+        this.setState({items: response})
+      })
       .catch(error => this.handleError(error));
   }
 
@@ -37,7 +48,7 @@ class App extends React.Component {
           <Header title={this.props.title}/>
           <section className="section">
             <div className="container">
-              <SearchBar />
+              <SearchBar onAdd={this.handleAdd}/>
               <List data={this.state.items}/>
             </div>
           </section>
@@ -46,13 +57,7 @@ class App extends React.Component {
   }
 }
 
-// App.PropTypes = {
-//   items: React.PropTypes.arrayOf(React.PropTypes.shape({
-//     src: React.PropTypes.string.isRequired,
-//     name: React.PropTypes.string.isRequired,
-//     desc: React.PropTypes.string.isRequired,
-//   })).isRequired,
-// };
+
 
 App.defaultProps = {
   title: "Beans Love Beers",

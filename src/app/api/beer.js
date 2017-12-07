@@ -20,12 +20,15 @@ export function getOneRandomItem() {
 
 export function getOneBeforeData(data) {
   // все объекты до даты 11-2010
+  // https://api.punkapi.com/v2/beers?buzz
   return fetch(`${BASE}/beers?brewed_before=${data}`);
 }
 
 export function getAllByName(name) {
   // все объекты которые совпадают по заданному имени (String)
-  return fetch(`${BASE}/beers?${name}`);
+  // https://api.punkapi.com/v2/beers?beer_name=buzz
+  // https://api.punkapi.com/v2/beers?yeast=buzz
+  return fetch(`${BASE}/beers?beer_name=${name}`);
 }
 
 export function getAllBeforeDataUpAbvGt(data, number) {
