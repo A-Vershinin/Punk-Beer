@@ -28,7 +28,7 @@ class List extends React.Component {
 
 
 List.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
+  data: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired

@@ -4,6 +4,7 @@ import List from "./components/List/List";
 import Header from "./components/Header/Header";
 import BeerAPI from "./api/beer";
 import SearchBar from "./components/SearchBar/SearchBar";
+import Pagination from "./components/Pagination/Pagination";
 
 
 const someArr = [
@@ -17,24 +18,37 @@ const someArr = [
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {items: []};
+    this.state = {items: [], itemsOnPage: []};
+    this.numberItemsShow = 6; //кол-во элементов для показана на странице
+    this.defaultNumberPage = 1; //номер страницы по умолчанию
     this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidMount() {
     BeerAPI.getAllItems()
-      .then(response => this.setState({items: response}))
+      .then(response => {
+        this.setState({items: response});
+        this.setState({itemsOnPage: this.getNumberPage(this.state.items, this.defaultNumberPage)})
+      })
       .catch(error => this.handleError(error));
   }
 
   handleAdd(title) {
     BeerAPI.getAllByName(title)
       .then(response => {
-        console.log(response);
-        this.setState({items: response})
+        this.setState({itemsOnPage: response})
       })
       .catch(error => this.handleError(error));
   }
+
+
+  getNumberPage(arr, numberPage) {
+    return arr.slice((numberPage-1) * this.numberItemsShow, numberPage * this.numberItemsShow);
+  }
+
+  handleItemsShow(pageNumber) {
+    this.setState({itemsOnPage: this.getNumberPage(this.state.items, pageNumber)});
+  };
 
   handleError(error) {
     console.log(error);
@@ -43,13 +57,16 @@ class App extends React.Component {
   render () {
     const beerData = this.state.items;
     const load = <div>Loading</div>;
+
     return (
       <div>
           <Header title={this.props.title}/>
           <section className="section">
             <div className="container">
               <SearchBar onAdd={this.handleAdd}/>
-              <List data={this.state.items}/>
+              <List data={this.state.itemsOnPage}/>
+              <Pagination onLinkClick={this.handleItemsShow.bind(this)}
+                          items={this.state.items} numberItemsShow={this.numberItemsShow}/>
             </div>
           </section>
       </div>
