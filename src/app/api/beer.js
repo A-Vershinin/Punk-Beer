@@ -1,7 +1,7 @@
-import fetch from "../tools/fetch";
+import fetch from '../tools/fetch';
 
-//описание API
-const BASE = "https://api.punkapi.com/v2"; // базовй урл
+// описание API
+const BASE = 'https://api.punkapi.com/v2'; // базовй урл
 
 export function getOneItem() {
   // один объект
@@ -52,11 +52,14 @@ export function getAllOnPage(page, number) {
 }
 
 
-
-
-
 export default {
-  getOneItem, getAllItems, getOneRandomItem, getOneBeforeData,
-  getAllBeforeDataUpAbvGt, getAllUpAbvGt, getAllDownAbvLt,
-  getAllOnPage, getAllByName
+  getOneItem,
+  getAllItems,
+  getOneRandomItem,
+  getOneBeforeData,
+  getAllBeforeDataUpAbvGt,
+  getAllUpAbvGt,
+  getAllDownAbvLt,
+  getAllOnPage,
+  getAllByName,
 };
