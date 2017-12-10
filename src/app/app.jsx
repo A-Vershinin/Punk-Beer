@@ -25,7 +25,7 @@ import Pagination from './components/Pagination/Pagination';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], numberItemsShow: 6, numberPage: 1 };
+    this.state = { items: [], itemsPerPage: 6, numberPage: 1 };
     // numberItemsShow = 6; //кол-во элементов для показана на странице
     // numberPage = 1; //номер страницы по умолчанию
     this.handleAdd = this.handleAdd.bind(this);
@@ -39,20 +39,7 @@ class App extends React.Component {
   }
   getItemsByPage(arr, numberPage) {
     // метод для пагинации
-    return arr.slice((numberPage - 1) * this.state.numberItemsShow, numberPage * this.state.numberItemsShow);
-  }
-  getArrLinks(number) {
-    // метод для пагинации
-    const arr = [];
-    for (let i = 1; i <= number; i += 1) {
-      arr.push(i);
-    }
-    return arr;
-  }
-
-  getLinks(arr) {
-    // метод для пагинации
-    return Math.ceil(arr.length / this.state.numberItemsShow);
+    return arr.slice((numberPage - 1) * this.state.itemsPerPage, numberPage * this.state.itemsPerPage);
   }
 
   handlePageNumberShow(pageNumber) {
@@ -67,20 +54,12 @@ class App extends React.Component {
     console.log(error);
   }
 
-
   render() {
     // const beerData = this.state.items;
     // const load = <div>Loading</div>;
 
     // Пагинация
     const itemsOnPage = this.getItemsByPage(this.state.items, this.state.numberPage);
-    // console.log(itemsOnPage);
-
-    // linksOnPage - сколько всего страниц
-    const linksOnPage = this.getLinks(this.state.items);
-
-    // allLinks - массив нужной длинны с номерами страниц
-    const allLinks = this.getArrLinks(linksOnPage);
 
     return (
       <div>
@@ -89,17 +68,15 @@ class App extends React.Component {
           <div className="container">
             <SearchBar onAdd={this.handleAdd} />
             <List data={itemsOnPage} />
-            <Pagination onLinkClick={this.handlePageNumberShow} allLinks={allLinks} />
+            <Pagination onLinkClick={this.handlePageNumberShow}
+                        totalItems={this.state.items.length}
+                        numberItemsShow={this.state.itemsPerPage}
+            />
           </div>
         </section>
       </div>
     );
   }
 }
-
-
-// App.defaultProps = {
-//   title: 'Beans Love Beers',
-// };
 
 export default App;

@@ -3,12 +3,32 @@ import PropTypes from 'prop-types';
 import '../Pagination/Pagination.scss';
 
 class Pagination extends React.Component {
+
+  getArrLinks(number) {
+    const arr = [];
+    for (let i = 1; i <= number; i += 1) {
+      arr.push(i);
+    }
+    return arr;
+  }
+
+  getLinks(totalItems) {
+    return Math.ceil(totalItems / this.props.numberItemsShow);
+  }
+
   render() {
+
+    // linksOnPage - сколько всего страниц
+    const linksOnPage = this.getLinks(this.props.totalItems);
+
+    // allLinks - массив нужной длинны с номерами страниц
+    const allLinks = this.getArrLinks(linksOnPage);
+
     return (
       <div className="pagin">
         <ul className="pagin__List">
           {
-            this.props.allLinks.map((item, index) => (
+            allLinks.map((item, index) => (
               <li key={index} className="pagin__item">
                 <a
                   key={index}
@@ -27,7 +47,8 @@ class Pagination extends React.Component {
 }
 
 Pagination.propTypes = {
-  allLinks: PropTypes.array.isRequired,
+  totalItems: PropTypes.number.isRequired,
+  numberItemsShow: PropTypes.number.isRequired,
   onLinkClick: PropTypes.func.isRequired,
 };
 
