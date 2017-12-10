@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./Item.scss";
-import { CardContent } from 'reactbulma';
-
-
+import './Item.scss';
 
 function Item(props) {
   return (
-     <li className="item">
+    <li className="item">
       <div className="item__left">
         <div className="item__image">
-          <img src={props.src} alt="Картинка"/>
+          <img src={props.src} alt="Картинка" />
         </div>
       </div>
       <div className="item__right">
@@ -20,7 +17,7 @@ function Item(props) {
         <div className="item__volume">Raging: {props.rating}</div>
       </div>
     </li>
-  )
+  );
 }
 
 Item.propTypes = {
@@ -28,7 +25,7 @@ Item.propTypes = {
   name: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
+  rating: PropTypes.number.isRequired,
 };
 
 export default Item;
