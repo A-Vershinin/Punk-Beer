@@ -16,11 +16,11 @@ const someArr = [
 
 
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-    this.state = {items: [], itemsOnPage: []};
-    this.numberItemsShow = 6; //кол-во элементов для показана на странице
-    this.defaultNumberPage = 1; //номер страницы по умолчанию
+    this.state = {items: [], numberItemsShow: 6, numberPage: 1};
+    // numberItemsShow = 6; //кол-во элементов для показана на странице
+    // numberPage = 1; //номер страницы по умолчанию
     this.handleAdd = this.handleAdd.bind(this);
   }
 
@@ -28,7 +28,6 @@ class App extends React.Component {
     BeerAPI.getAllItems()
       .then(response => {
         this.setState({items: response});
-        this.setState({itemsOnPage: this.getNumberPage(this.state.items, this.defaultNumberPage)})
       })
       .catch(error => this.handleError(error));
   }
@@ -36,27 +35,52 @@ class App extends React.Component {
   handleAdd(title) {
     BeerAPI.getAllByName(title)
       .then(response => {
-        this.setState({itemsOnPage: response})
+        this.setState({items: response})
       })
       .catch(error => this.handleError(error));
   }
 
-
-  getNumberPage(arr, numberPage) {
-    return arr.slice((numberPage-1) * this.numberItemsShow, numberPage * this.numberItemsShow);
+  getItemsByPage(arr, numberPage) {
+    // метод для пагинации
+    return arr.slice((numberPage-1) * this.state.numberItemsShow, numberPage * this.state.numberItemsShow);
   }
 
-  handleItemsShow(pageNumber) {
-    this.setState({itemsOnPage: this.getNumberPage(this.state.items, pageNumber)});
+  handlePageNumberShow(pageNumber) {
+    this.setState({numberPage: pageNumber});
   };
+
+  getArrLinks(number) {
+    // метод для пагинации
+    let arr = [];
+    for (let i = 1; i <= number; i++) {
+      arr.push(i);
+    }
+    return arr;
+  }
+
+  getLinks(arr) {
+    // метод для пагинации
+    return Math.ceil(arr.length / this.state.numberItemsShow);
+  }
 
   handleError(error) {
     console.log(error);
   }
 
+
   render () {
     const beerData = this.state.items;
     const load = <div>Loading</div>;
+
+    // Пагинация
+    let itemsOnPage = this.getItemsByPage(this.state.items, this.state.numberPage);
+    // console.log(itemsOnPage);
+
+    // linksOnPage - сколько всего страниц
+    const linksOnPage = this.getLinks(this.state.items);
+
+    // allLinks - массив нужной длинны с номерами страниц
+    const allLinks = this.getArrLinks(linksOnPage);
 
     return (
       <div>
@@ -64,9 +88,8 @@ class App extends React.Component {
           <section className="section">
             <div className="container">
               <SearchBar onAdd={this.handleAdd}/>
-              <List data={this.state.itemsOnPage}/>
-              <Pagination onLinkClick={this.handleItemsShow.bind(this)}
-                          items={this.state.items} numberItemsShow={this.numberItemsShow}/>
+              <List data={itemsOnPage}/>
+              <Pagination onLinkClick={this.handlePageNumberShow.bind(this)} allLinks={allLinks}/>
             </div>
           </section>
       </div>
