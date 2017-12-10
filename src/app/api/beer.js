@@ -1,7 +1,7 @@
-import fetch from "../tools/fetch";
+import fetch from '../tools/fetch';
 
-//описание API
-const BASE = "https://api.punkapi.com/v2"; // базовй урл
+// описание API
+const BASE = 'https://api.punkapi.com/v2'; // базовй урл
 
 export function getOneItem() {
   // один объект
@@ -20,12 +20,15 @@ export function getOneRandomItem() {
 
 export function getOneBeforeData(data) {
   // все объекты до даты 11-2010
+  // https://api.punkapi.com/v2/beers?buzz
   return fetch(`${BASE}/beers?brewed_before=${data}`);
 }
 
 export function getAllByName(name) {
   // все объекты которые совпадают по заданному имени (String)
-  return fetch(`${BASE}/beers?${name}`);
+  // https://api.punkapi.com/v2/beers?beer_name=buzz
+  // https://api.punkapi.com/v2/beers?yeast=buzz
+  return fetch(`${BASE}/beers?beer_name=${name}`);
 }
 
 export function getAllBeforeDataUpAbvGt(data, number) {
@@ -49,11 +52,14 @@ export function getAllOnPage(page, number) {
 }
 
 
-
-
-
 export default {
-  getOneItem, getAllItems, getOneRandomItem, getOneBeforeData,
-  getAllBeforeDataUpAbvGt, getAllUpAbvGt, getAllDownAbvLt,
-  getAllOnPage, getAllByName
+  getOneItem,
+  getAllItems,
+  getOneRandomItem,
+  getOneBeforeData,
+  getAllBeforeDataUpAbvGt,
+  getAllUpAbvGt,
+  getAllDownAbvLt,
+  getAllOnPage,
+  getAllByName,
 };

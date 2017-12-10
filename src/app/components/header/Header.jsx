@@ -1,35 +1,30 @@
 import React from 'react';
-import Nav from "../Navigation/Navigation";
-import "./Header.scss";
-import { Level } from 'reactbulma';
+import PropTypes from 'prop-types';
+import Nav from '../Navigation/Navigation';
+import '../Header/header.scss';
+import { Level } from '../../../../node_modules/reactbulma';
 
+const Header = props => (
+  <header className="header">
+    <div className="container level">
+      <Level.Left>
+        <h1 className="title is-1 header__title">{props.title}</h1>
+      </Level.Left>
+      <Level.Right>
+        <Nav />
+      </Level.Right>
+    </div>
+  </header>
+);
 
+Header.propTypes = {
+  title: PropTypes.string,
+};
 
-class Header extends React.Component {
-  constructor (props) {
-    super(props);
-  }
+Header.defaultProps = {
+  title: 'Beans Love Beers',
+};
 
-  render () {
-    return (
-      <header className="header">
-        <div className="container level">
-          <Level.Left>
-            <h1 className="title is-1 header__title">{this.props.title}</h1>
-          </Level.Left>
-          <Level.Right>
-            <Nav />
-          </Level.Right>
-        </div>
-      </header>
-    )
-  }
-}
-
-// Header.PropTypes = {
-//   title: React.PropTypes.string
-// };
 
 export default Header;
-
 

@@ -1,37 +1,31 @@
-import React, { PropTypes }  from 'react';
-import "./List.scss";
-import Item from "../Item/Item";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './List.scss';
+import Item from '../Item/Item';
 
+const List = props => (
+  <ul className="list">
+    {
+        props.data.map(elem => (
+          <Item
+            key={elem.id}
+            src={elem.image_url}
+            name={elem.name}
+            time={elem.first_brewed}
+            desc={elem.description}
+            rating={elem.attenuation_level}
+          />
+        ))
+      }
+  </ul>
+);
 
-class List extends React.Component {
-  constructor (props) {
-    super(props);
-  }
-
-  render () {
-    return (
-      <ul className="list">
-        {
-          this.props.data.map(elem => {
-            return (
-              <Item key={elem.id} src={elem.image_url} name={elem.name} time={elem.first_brewed}
-                    desc={elem.description} volume={elem.boil_volume.value}
-              />
-            );
-          })
-        }
-        </ul>
-    );
-  }
-}
-
-// List.PropTypes = {
-//   data: React.PropTypes.arrayOf(React.PropTypes.shape({
-//     src: React.PropTypes.string.isRequired,
-//     name: React.PropTypes.string.isRequired,
-//     desc: React.PropTypes.string.isRequired,
-//   })).isRequired,
-// };
-
+List.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+  })).isRequired,
+};
 
 export default List;
