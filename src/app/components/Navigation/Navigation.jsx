@@ -11,7 +11,7 @@ const Navigation = () => (
       <NavLink to="favorite" activeClassName="nav__link--active" className="link nav__link">Favorites</NavLink>
     </li>
     <li className="level-item nav__item">
-      <NavLink to="about" activeClassName="nav__link--active" className="link nav__link">About</NavLink>
+      <NavLink to="about" activeclassame="nav__link--active" className="link nav__link">About</NavLink>
     </li>
   </nav>
 );
