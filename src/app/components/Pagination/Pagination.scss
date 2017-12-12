@@ -20,10 +20,6 @@
     margin-right: 0;
   }
 }
-.pagin__item--active .pagin__link {
-  color: #fff;
-  background-color: transparent;
-}
 .pagin__link {
   display: block;
   padding: 10px 15px;
@@ -38,5 +34,8 @@
   &:active {
     box-shadow: 0 0 2px 1px  #00b3ee;
   }
-
+}
+.pagin__item--active .pagin__link {
+  color: #fff;
+  background-color: transparent;
 }

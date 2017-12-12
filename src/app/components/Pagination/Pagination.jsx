@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink  } from 'react-router-dom';
 import '../Pagination/Pagination.scss';
 
 class Pagination extends React.Component {
-
   getArrLinks(number) {
     const arr = [];
     for (let i = 1; i <= number; i += 1) {
@@ -17,7 +17,6 @@ class Pagination extends React.Component {
   }
 
   render() {
-
     // linksOnPage - сколько всего страниц
     const linksOnPage = this.getLinks(this.props.totalItems);
 
@@ -30,15 +29,15 @@ class Pagination extends React.Component {
           {
             allLinks.map((item, index) => (
               <li key={index} className="pagin__item">
-                <a
-                  key={index}
-                  href="#"
-                  className="pagin__link"
-                  onClick={() => this.props.onLinkClick(index + 1)}
+                <a activeClassName="pagin__item--active"
+                   key={index}
+                   href="#"
+                   className="pagin__link"
+                   onClick={() => this.props.onLinkClick(index + 1)}
                 >{item}
                 </a>
               </li>
-              ))
+            ))
           }
         </ul>
       </div>

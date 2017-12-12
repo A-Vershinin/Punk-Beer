@@ -1,9 +1,16 @@
 import React from 'react';
+import { Router, Route, Switch} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 import List from './components/List/List';
+import RouterList from './components/RouterList/RouterList';
 import Header from './components/Header/Header';
+import Favorite from './components/Favorite/Favorite';
+import About from './components/About/About';
+import NotFound from './components/NotFound/NotFound';
 import BeerAPI from './api/beer';
 import SearchBar from './components/SearchBar/SearchBar';
 import Pagination from './components/Pagination/Pagination';
+const history = createBrowserHistory();
 
 
 // const someArr = [
@@ -20,7 +27,6 @@ import Pagination from './components/Pagination/Pagination';
 //     id: 4, image_ur4: 'https://images.punkapi.com/v2/195.png', name: 'Beer Name4', first_brewed: '21/2013', description: 'riot of grapefruit', boil_volume: { value: 50 },
 //   },
 // ];
-
 
 class App extends React.Component {
   constructor(props) {
@@ -62,21 +68,38 @@ class App extends React.Component {
     const itemsOnPage = this.getItemsByPage(this.state.items, this.state.numberPage);
 
     return (
-      <div>
-        <Header />
-        <section className="section">
-          <div className="container">
-            <SearchBar onAdd={this.handleAdd} />
-            <List data={itemsOnPage} />
-            <Pagination onLinkClick={this.handlePageNumberShow}
-                        totalItems={this.state.items.length}
-                        numberItemsShow={this.state.itemsPerPage}
-            />
-          </div>
-        </section>
-      </div>
+      <Router history={history}>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <section className="section">
+                <div className="container">
+                  <SearchBar onAdd={this.handleAdd} />
+                  <List data={itemsOnPage} />
+                  <Pagination
+                    onLinkClick={this.handlePageNumberShow}
+                    totalItems={this.state.items.length}
+                    numberItemsShow={this.state.itemsPerPage}
+                  />
+                </div>
+              </section>
+            </Route>
+            <Route path="/favorite" component={Favorite}/>
+            <Route path="/about" component={About}/>
+            <Route component={NotFound}/>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
 export default App;
+
+{/*<List data={itemsOnPage} />*/}
+{/*<Pagination*/}
+  {/*onLinkClick={this.handlePageNumberShow}*/}
+  {/*totalItems={this.state.items.length}*/}
+  {/*numberItemsShow={this.state.itemsPerPage}*/}
+{/*/>*/}
