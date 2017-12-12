@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Route, Switch} from 'react-router-dom';
 import './List.scss';
 import Item from '../Item/Item';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink  } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../Pagination/Pagination.scss';
 
 class Pagination extends React.Component {
@@ -29,13 +29,14 @@ class Pagination extends React.Component {
           {
             allLinks.map((item, index) => (
               <li key={index} className="pagin__item">
-                <a activeClassName="pagin__item--active"
-                   key={index}
-                   href="#"
-                   className="pagin__link"
-                   onClick={() => this.props.onLinkClick(index + 1)}
+                <NavLink
+                  activeClassName="pagin__link--active"
+                  key={index}
+                  to={`/list/${index+1}`}
+                  className="pagin__link"
+                  onClick={() => this.props.onLinkClick(index + 1)}
                 >{item}
-                </a>
+                </NavLink>
               </li>
             ))
           }

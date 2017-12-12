@@ -1,5 +1,4 @@
 import React from 'react';
-import { Router, Route, Switch} from 'react-router-dom';
 import './Home.scss';
 
 import SearchBar from '../SearchBar/SearchBar';
@@ -46,6 +45,7 @@ class Home extends React.Component {
     this.setState({ numberPage: pageNumber });
   }
   handleAdd(title) {
+    console.log(title);
     BeerAPI.getAllByName(title)
       .then(response => this.setState({ items: response }))
       .catch(error => this.handleError(error));
@@ -54,34 +54,32 @@ class Home extends React.Component {
     console.log(error);
   }
 
-  render () {
-    // const beerData = this.state.items;
+  render() {
     // const load = <div>Loading</div>;
 
     // Пагинация
+    const page = this.props.match.params.page;
+    // console.log(page)
     const itemsOnPage = this.getItemsByPage(this.state.items, this.state.numberPage);
 
+
     return (
-        <main>
-          <section className="section">
-            <div className="container">
-              <SearchBar onAdd={this.handleAdd}/>
-              <Switch>
-                <Route path="/list" component={List}/>
-              </Switch>
-              <Pagination
-                onLinkClick={this.handlePageNumberShow}
-                totalItems={this.state.items.length}
-                numberItemsShow={this.state.itemsPerPage}
-              />
-            </div>
-          </section>
-        </main>
-    )
+      <main>
+        <section className="section">
+          <div className="container">
+            <SearchBar onAdd={this.handleAdd} />
+            <List data={itemsOnPage} />
+            <Pagination
+              onLinkClick={this.handlePageNumberShow}
+              totalItems={this.state.items.length}
+              numberItemsShow={this.state.itemsPerPage}
+            />
+          </div>
+        </section>
+      </main>
+    );
   }
 }
 
 export default Home;
-
-{/*<Route exact path="/list/:id" component={List}/>*/}
-{/*<List data={itemsOnPage} />*/}
+// linksPath={(page) => `/list/${page}`}
