@@ -6,7 +6,6 @@ import Favorite from './components/Favorite/Favorite';
 import About from './components/About/About';
 import NotFound from './components/NotFound/NotFound';
 import Home from './components/Home/Home';
-import List from './components/List/List';
 
 const history = createBrowserHistory();
 
@@ -18,7 +17,6 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/list" component={Home} />
             <Route path="/list/:page?" component={Home} />
             <Route path="/favorite" component={Favorite} />
             <Route path="/about" component={About} />
