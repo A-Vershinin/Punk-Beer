@@ -24,7 +24,7 @@ import BeerAPI from '../../api/beer';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], itemsPerPage: 6, numberPage: 1 };
+    this.state = { items: [], itemsPerPage: 6};
     // numberItemsShow = 6; //кол-во элементов для показана на странице
     // numberPage = 1; //номер страницы по умолчанию
     this.handleAdd = this.handleAdd.bind(this);
@@ -58,9 +58,8 @@ class Home extends React.Component {
     // const load = <div>Loading</div>;
 
     // Пагинация
-    const page = this.props.match.params.page;
-    // console.log(page)
-    const itemsOnPage = this.getItemsByPage(this.state.items, this.state.numberPage);
+    const { page = 1 } = this.props.match.params;
+    const itemsOnPage = this.getItemsByPage(this.state.items, page);
 
 
     return (
