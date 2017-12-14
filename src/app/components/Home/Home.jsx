@@ -72,6 +72,7 @@ class Home extends React.Component {
               onLinkClick={this.handlePageNumberShow}
               totalItems={this.state.items.length}
               numberItemsShow={this.state.itemsPerPage}
+              pageActive={page}
             />
           </div>
         </section>
@@ -81,4 +82,4 @@ class Home extends React.Component {
 }
 
 export default Home;
-// linksPath={(page) => `/list/${page}`}
+
