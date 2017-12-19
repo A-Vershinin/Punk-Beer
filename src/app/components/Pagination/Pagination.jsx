@@ -41,9 +41,7 @@ class Pagination extends React.Component {
                  </NavLink>
                </li>
              ))
-
           }
-
         </ul>
       </div>
     );
