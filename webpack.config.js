@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
 	devServer: {
 		open: 'chrome',
-		port: 3000
+		port: 3001
 	},
 	devtool: "heap-module-eval-source-map",
 	entry: {
@@ -15,6 +15,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
+    publicPath: "/",
 		filename: 'js/[name][hash].js',
 		sourceMapFilename: "js/[name].map"
 	},

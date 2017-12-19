@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Nav from '../Navigation/Navigation';
-import '../Header/header.scss';
+import './header.scss';
 import { Level } from '../../../../node_modules/reactbulma';
 
 const Header = props => (
